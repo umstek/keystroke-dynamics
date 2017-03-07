@@ -6,18 +6,18 @@
 package lk.umstek.biometrics.keystrokedynamics.core;
 
 /**
- * 
+ * Pressed or released?
+ *
  * @author wickramaranga
  */
 public enum EventType {
 
     /**
-     * User has pressed the button. 
+     * User has pressed the button.
      */
-    KeyDown, 
-
+    KeyDown,
     /**
-     * User has released the button. 
+     * User has released the button.
      */
     KeyUp
 }
