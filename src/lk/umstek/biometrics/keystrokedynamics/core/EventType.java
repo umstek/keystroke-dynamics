@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * EventType.java
+ * Holds the state of the event, i.e.: whether the key was pressed or was
+ * released. 
  */
 package lk.umstek.biometrics.keystrokedynamics.core;
 
