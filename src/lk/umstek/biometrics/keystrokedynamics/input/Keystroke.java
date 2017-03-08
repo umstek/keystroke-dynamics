@@ -3,7 +3,7 @@
  * Holds data describing a single key event, either a press or a release. 
  * Immutable. 
  */
-package lk.umstek.biometrics.keystrokedynamics.core;
+package lk.umstek.biometrics.keystrokedynamics.input;
 
 import java.util.Date;
 

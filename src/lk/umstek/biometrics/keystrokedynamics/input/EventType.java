@@ -3,7 +3,7 @@
  * Holds the state of the event, i.e.: whether the key was pressed or was
  * released. 
  */
-package lk.umstek.biometrics.keystrokedynamics.core;
+package lk.umstek.biometrics.keystrokedynamics.input;
 
 /**
  * Pressed or released?

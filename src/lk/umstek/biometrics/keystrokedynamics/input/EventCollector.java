@@ -3,12 +3,12 @@
  * Keeps key events recorded. 
  * 
  */
-package lk.umstek.biometrics.keystrokedynamics.core;
+package lk.umstek.biometrics.keystrokedynamics.input;
 
 import java.util.LinkedList;
 
 /**
- * Collect information about key pressed or releases.
+ * Collect information about key presses or releases.
  *
  * @author wickramaranga
  */
