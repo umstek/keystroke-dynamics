@@ -5,6 +5,7 @@
  */
 package lk.umstek.biometrics.keystrokedynamics.persistence;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -54,5 +55,14 @@ public class FileIO {
         }
 
         return null;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static boolean firstTime() {
+        File f = new File("model.ser");
+        return !(f.exists() && !f.isDirectory());
     }
 }

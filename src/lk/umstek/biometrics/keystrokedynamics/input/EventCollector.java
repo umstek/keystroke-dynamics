@@ -151,18 +151,17 @@ public class EventCollector {
         }
     }
 
-    public void log() {
-        totalKeyCounts.forEach((t, u) -> {
-            System.out.println("Code: " + t + "; Avg: " + totalKeyDurations.get(t) / u);
-        });
-
-        digraphCounts.forEach((k, h) -> {
-            h.forEach((t, u) -> {
-                System.out.println(k + "->" + t + " = " + digraphDelays.get(k).get(t) / u);
-            });
-        });
-    }
-
+//    public void log() {
+//        totalKeyCounts.forEach((t, u) -> {
+//            System.out.println("Code: " + t + "; Avg: " + totalKeyDurations.get(t) / u);
+//        });
+//
+//        digraphCounts.forEach((k, h) -> {
+//            h.forEach((t, u) -> {
+//                System.out.println(k + "->" + t + " = " + digraphDelays.get(k).get(t) / u);
+//            });
+//        });
+//    }
     /**
      * @return the totalKeyDurations
      */
