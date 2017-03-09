@@ -1,14 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
+ * 
+ * 
  */
 package lk.umstek.biometrics.keystrokedynamics.features;
+
+import lk.umstek.biometrics.keystrokedynamics.input.EventCollector;
 
 /**
  *
  * @author wickramaranga
  */
 public class FeatureExtractor {
-    
+
+    public FeatureModel ExtractFeatures(EventCollector eventCollector) {
+        return null;
+    }
 }
