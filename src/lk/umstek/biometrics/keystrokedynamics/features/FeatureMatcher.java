@@ -32,7 +32,7 @@ public class FeatureMatcher {
                     durationMismatches++;
                 }
             } else {
-                durationMismatches++;
+                // durationMismatches++;
             }
         }
 
@@ -44,12 +44,12 @@ public class FeatureMatcher {
                     delayMismatches++;
                 }
             } else {
-                delayMismatches++;
+                // delayMismatches++;
             }
         }
 
-        double f = ((durationMatches / (durationMismatches * 1.0 + durationMatches))
-                + 1.5 * (delayMatches / (delayMatches * 1.0 + delayMismatches))) / 2.5;
+        double f = 1.5 * ((durationMatches / (durationMismatches * 1.0 + durationMatches))
+                + (delayMatches / (delayMatches * 1.0 + delayMismatches))) / 2.5;
 
         return f >= MATCH_TOLERANCE;
     }
