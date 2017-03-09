@@ -13,10 +13,11 @@ import lk.umstek.biometrics.keystrokedynamics.util.Pair;
  */
 public class FeatureMatcher {
 
-    public static final int KEY_DURATION_TOLERENCE = 25;
-    public static final int DIGRAPH_DELAY_TOLERENCE = 20;
+    public static final double MATCH_TOLERANCE = 0.65;
+    public static final int KEY_DURATION_TOLERANCE = 25;
+    public static final int DIGRAPH_DELAY_TOLERANCE = 30;
 
-    public static double match(FeatureModel actual, FeatureModel reference) {
+    public static boolean match(FeatureModel actual, FeatureModel reference) {
         int durationMatches = 0;
         int durationMismatches = 0;
 
@@ -25,7 +26,7 @@ public class FeatureMatcher {
 
         for (int i : actual.getKeyDurationAvg().keySet()) {
             if (reference.getKeyDurationAvg().containsKey(i)) {
-                if (Math.abs(reference.getKeyDurationAvg().get(i) - actual.getKeyDurationAvg().get(i)) < KEY_DURATION_TOLERENCE) {
+                if (Math.abs(reference.getKeyDurationAvg().get(i) - actual.getKeyDurationAvg().get(i)) < KEY_DURATION_TOLERANCE) {
                     durationMatches++;
                 } else {
                     durationMismatches++;
@@ -37,7 +38,7 @@ public class FeatureMatcher {
 
         for (Pair pair : actual.getDigraphDelayAvg().keySet()) {
             if (reference.getDigraphDelayAvg().containsKey(pair)) {
-                if (Math.abs(reference.getDigraphDelayAvg().get(pair) - actual.getDigraphDelayAvg().get(pair)) < DIGRAPH_DELAY_TOLERENCE) {
+                if (Math.abs(reference.getDigraphDelayAvg().get(pair) - actual.getDigraphDelayAvg().get(pair)) < DIGRAPH_DELAY_TOLERANCE) {
                     delayMatches++;
                 } else {
                     delayMismatches++;
@@ -47,6 +48,9 @@ public class FeatureMatcher {
             }
         }
 
-        return (durationMatches / (durationMismatches * 1.0 + durationMatches)) + 1.5 * (delayMatches / (delayMatches * 1.0 + delayMismatches));
+        double f = ((durationMatches / (durationMismatches * 1.0 + durationMatches))
+                + 1.5 * (delayMatches / (delayMatches * 1.0 + delayMismatches))) / 2.5;
+
+        return f >= MATCH_TOLERANCE;
     }
 }

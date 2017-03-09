@@ -5,6 +5,13 @@
  */
 package lk.umstek.biometrics.keystrokedynamics;
 
+import javax.swing.JOptionPane;
+import lk.umstek.biometrics.keystrokedynamics.features.FeatureExtractor;
+import lk.umstek.biometrics.keystrokedynamics.features.FeatureMatcher;
+import lk.umstek.biometrics.keystrokedynamics.features.FeatureModel;
+import lk.umstek.biometrics.keystrokedynamics.input.EventCollector;
+import lk.umstek.biometrics.keystrokedynamics.persistence.FileIO;
+
 /**
  *
  * @author wickramaranga
@@ -33,6 +40,7 @@ public class LoginForm extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAct = new javax.swing.JTextArea();
         jButtonNext = new javax.swing.JButton();
+        jButtonReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,10 +57,32 @@ public class LoginForm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextRef);
 
         jTextAct.setColumns(20);
+        jTextAct.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jTextAct.setLineWrap(true);
         jTextAct.setRows(5);
+        jTextAct.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextActKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextActKeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTextAct);
 
         jButtonNext.setText("Login");
+        jButtonNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNextActionPerformed(evt);
+            }
+        });
+
+        jButtonReset.setText("Reset");
+        jButtonReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,6 +98,8 @@ public class LoginForm extends javax.swing.JFrame {
                         .addGap(0, 201, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonReset)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonNext)))
                 .addContainerGap())
         );
@@ -81,14 +113,50 @@ public class LoginForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(jButtonNext)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonNext)
+                    .addComponent(jButtonReset))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    EventCollector collector = new EventCollector();
+
+    private void jTextActKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextActKeyPressed
+        collector.press(evt, false);
+    }//GEN-LAST:event_jTextActKeyPressed
+
+    private void jTextActKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextActKeyReleased
+        collector.release(evt, false);
+    }//GEN-LAST:event_jTextActKeyReleased
+
+    private void jButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetActionPerformed
+        jTextAct.setText("");
+        collector = new EventCollector();
+    }//GEN-LAST:event_jButtonResetActionPerformed
+
+    private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNextActionPerformed
+        if (jTextRef.getText().equals(jTextAct.getText())) {
+            FeatureModel model = FeatureExtractor.extractFeatures(collector);
+            FeatureModel ref = FileIO.loadModel();
+
+            if (FeatureMatcher.match(model, ref)) {
+                JOptionPane.showMessageDialog(this, "Login successful. ");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Login error. ", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter the correct text. ");
+        }
+    }//GEN-LAST:event_jButtonNextActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonNext;
+    private javax.swing.JButton jButtonReset;
     private javax.swing.JLabel jLabelInfo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

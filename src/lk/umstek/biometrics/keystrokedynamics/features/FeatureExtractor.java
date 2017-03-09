@@ -29,6 +29,9 @@ public class FeatureExtractor {
             }
         }
 
-        return new FeatureModel();
+        FeatureModel m = new FeatureModel();
+        m.setDigraphDelayAvg(digraphDelayAvg);
+        m.setKeyDurationAvg(keyDurationAvg);
+        return m;
     }
 }
