@@ -10,8 +10,6 @@ import java.io.Serializable;
 /**
  *
  * @author wickramaranga
- * @param <L>
- * @param <R>
  */
 public class Pair implements Serializable {
 

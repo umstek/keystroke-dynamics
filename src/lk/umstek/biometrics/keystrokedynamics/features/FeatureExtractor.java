@@ -15,7 +15,7 @@ import lk.umstek.biometrics.keystrokedynamics.util.Pair;
  */
 public class FeatureExtractor {
 
-    public FeatureModel extractFeatures(EventCollector ec) {
+    public static FeatureModel extractFeatures(EventCollector ec) {
         HashMap<Integer, Long> keyDurationAvg = new HashMap<>();
         HashMap<Pair, Long> digraphDelayAvg = new HashMap<>();
 
