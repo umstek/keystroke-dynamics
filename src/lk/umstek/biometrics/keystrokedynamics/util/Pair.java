@@ -13,17 +13,17 @@ import java.io.Serializable;
  * @param <L>
  * @param <R>
  */
-public class Pair<L, R> implements Serializable {
+public class Pair implements Serializable {
 
-    private final L left;
-    private final R right;
+    private final int left;
+    private final int right;
 
     /**
      *
      * @param left
      * @param right
      */
-    public Pair(L left, R right) {
+    public Pair(int left, int right) {
         this.left = left;
         this.right = right;
     }
@@ -32,7 +32,7 @@ public class Pair<L, R> implements Serializable {
      *
      * @return
      */
-    public L getLeft() {
+    public int getLeft() {
         return left;
     }
 
@@ -40,13 +40,13 @@ public class Pair<L, R> implements Serializable {
      *
      * @return
      */
-    public R getRight() {
+    public int getRight() {
         return right;
     }
 
     @Override
     public int hashCode() {
-        return left.hashCode() ^ right.hashCode();
+        return left ^ right;
     }
 
     @Override
@@ -55,8 +55,8 @@ public class Pair<L, R> implements Serializable {
             return false;
         }
         Pair pairo = (Pair) o;
-        return this.left.equals(pairo.getLeft())
-                && this.right.equals(pairo.getRight());
+        return this.left == pairo.getLeft()
+                && this.right == pairo.getRight();
     }
 
 }

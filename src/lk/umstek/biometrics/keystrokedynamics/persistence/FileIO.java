@@ -25,7 +25,7 @@ public class FileIO {
      *
      * @param featureModel
      */
-    public static void SaveModel(FeatureModel featureModel) {
+    public static void saveModel(FeatureModel featureModel) {
         try (
                 FileOutputStream fileOutputStream = new FileOutputStream("model.ser");
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
@@ -41,7 +41,7 @@ public class FileIO {
      *
      * @return
      */
-    public static FeatureModel LoadModel() {
+    public static FeatureModel loadModel() {
         try (
                 FileInputStream fileInputStream = new FileInputStream("model.ser");
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {

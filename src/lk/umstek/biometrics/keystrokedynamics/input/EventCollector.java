@@ -162,4 +162,32 @@ public class EventCollector {
             });
         });
     }
+
+    /**
+     * @return the totalKeyDurations
+     */
+    public ConcurrentHashMap<Integer, Long> getTotalKeyDurations() {
+        return totalKeyDurations;
+    }
+
+    /**
+     * @return the totalKeyCounts
+     */
+    public ConcurrentHashMap<Integer, Integer> getTotalKeyCounts() {
+        return totalKeyCounts;
+    }
+
+    /**
+     * @return the digraphDelays
+     */
+    public ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, Long>> getDigraphDelays() {
+        return digraphDelays;
+    }
+
+    /**
+     * @return the digraphCounts
+     */
+    public ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, Integer>> getDigraphCounts() {
+        return digraphCounts;
+    }
 }
